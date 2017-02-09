@@ -1,0 +1,32 @@
+{
+  "name": "appSerwer",
+  "version": "1.0.0",
+  "description": "application REST based on Angular 2 and event serwer on http://tymonqart.pl",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp && node  ./dist/server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasztyminski/application-for-TypeScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukasztyminski/application-for-TypeScript/issues"
+  },
+  "homepage": "https://github.com/lukasztyminski/application-for-TypeScript#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "del": "^2.2.2",
+    "express": "^4.14.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-typescript": "^3.1.4",
+    "typescript": "^2.1.6"
+  }
+}

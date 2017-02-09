@@ -1,0 +1,7 @@
+"use strict";
+var server_1 = require("./server");
+var server = new server_1.Server();
+server.setRoutes();
+server.startServer();
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxtQ0FBZ0M7QUFFaEMsSUFBSSxNQUFNLEdBQUcsSUFBSSxlQUFNLEVBQUUsQ0FBQztBQUUxQixNQUFNLENBQUMsU0FBUyxFQUFFLENBQUM7QUFFbkIsTUFBTSxDQUFDLFdBQVcsRUFBRSxDQUFDIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtTZXJ2ZXJ9IGZyb20gXCIuL3NlcnZlclwiO1xyXG5cclxudmFyIHNlcnZlciA9IG5ldyBTZXJ2ZXIoKTtcclxuXHJcbnNlcnZlci5zZXRSb3V0ZXMoKTtcclxuXHJcbnNlcnZlci5zdGFydFNlcnZlcigpOyJdfQ==
