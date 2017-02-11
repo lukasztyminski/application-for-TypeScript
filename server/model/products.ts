@@ -29,9 +29,30 @@ export class Products {
         return this.productsList;
     }
 
+    public delete(productId: number): Boolean {
+        let deleted: Boolean = false;
+
+        this.productsList = this.productsList.filter(
+            (product: ProductModel.Product) => {
+                deleted = deleted || product.getId() === productId;
+                return product.getId() !== productId;
+            }
+        );
+
+        return deleted;
+    }
+
     public fetch(productId: number): ProductModel.Product {
         return productId && this.productsList.filter(
             (product: ProductModel.Product) => product.getId() === productId
+        ).shift();
+    }
+
+    public find(productQuery: string): ProductModel.Product {
+        let productId = parseInt(productQuery);
+
+        return this.productsList.filter(
+            (product: ProductModel.Product) => product.getId() === productId || product.getName().toLowerCase() === productQuery.toLowerCase()
         ).shift();
     }
 }

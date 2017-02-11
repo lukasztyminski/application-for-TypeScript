@@ -11,6 +11,14 @@ export class Product {
         return this.id;
     }
 
+    public getName() {
+        return this.name;
+    }
+
+    public setName(newName: string) {
+        this.name = newName;
+    }
+
     public updateQuantity(newQuantity: number){
         this.quantity = newQuantity;
     }

@@ -9,9 +9,13 @@ export class Products {
         let router: express.Router = express.Router();
         let productsRoute: Products = new Products();
 
-        router.get("/products", productsRoute.index.bind(productsRoute));
-        router.post("/products", productsRoute.create.bind(productsRoute));
-        router.get("/products/:product_id", productsRoute.fetch.bind(productsRoute));
+        router.get("/products/", productsRoute.index.bind(productsRoute));
+        router.post("/products/", productsRoute.create.bind(productsRoute));
+        router.put("/products/:product_id", productsRoute.update.bind(productsRoute));
+        router.delete("/products/:product_id", productsRoute.delete.bind(productsRoute));
+        router.get("/products/:product", productsRoute.find.bind(productsRoute));
+        router.post("/products/delete/:product_id", productsRoute.delete.bind(productsRoute));
+        router.post("/products/update/:product_id", productsRoute.update.bind(productsRoute));
 
         return router;
     }
@@ -30,7 +34,7 @@ export class Products {
     }
 
     public create(req: express.Request, res: express.Response) {
-        let productName: string = req.body.product_name;
+        let productName: string = req.body.name;
         let productQuantity: number = parseInt(req.body.quantity) || 0;
 
         if(!productName) {
@@ -42,9 +46,45 @@ export class Products {
 
     }
 
-    public fetch(req: express.Request, res: express.Response){
+    public delete(req: express.Request, res: express.Response) {
+        let productId: number = parseInt(req.params.product_id);
+        let wasDeleted: Boolean = this.productList.delete(productId);
+
+        if(!wasDeleted) {
+            res.status(404).send("Product not found");
+            return;
+        } else {
+            res.json({
+                success: true
+            });
+        }
+    }
+
+    public update(req: express.Request, res: express.Response){
         let productId: number = parseInt(req.params.product_id);
         let product: Product.Product = this.productList.fetch(productId);
+        let productName: string = req.body.name;
+        let productQuantity: string = req.body.quantity;
+
+        if(!product){
+            res.status(404).send("Product not found");
+            return;
+        }
+
+        if (productName !== undefined) {
+            product.setName(productName);
+        }
+
+        if (productQuantity !== undefined) {
+            product.updateQuantity(parseInt(productQuantity, 10));
+        }
+
+        res.json(product);
+    }
+
+    public find(req: express.Request, res: express.Response){
+        let productQuery: string = req.params.product;
+        let product: Product.Product = this.productList.find(productQuery);
 
         if(!product){
             res.status(404).send("Product not found");
